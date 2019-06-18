@@ -1,0 +1,27 @@
+cart-server/node_modules
+cart-server/public/hot
+cart-server/public/storage
+cart-server/storage/*.key
+cart-server/vendor
+cart-server/.idea
+cart-server/.vscode
+cart-server/.vagrant
+cart-server/Homestead.json
+cart-server/Homestead.yaml
+cart-server/npm-debug.log
+cart-server/yarn-error.log
+cart-server/.env
+cart-server/.phpunit.result.cache
+
+
+# dependencies
+cart-client/node_modules
+
+# logs
+cart-client/npm-debug.log
+
+# Nuxt build
+cart-client/.nuxt
+
+# Nuxt generate
+cart-client/dist
