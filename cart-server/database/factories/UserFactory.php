@@ -24,7 +24,16 @@ $factory->define(App\Models\User::class, function (Faker $faker) {
 
 $factory->define(App\Models\Category::class, function (Faker $faker) {
     return [
-        'name' => $name = $faker->unique()->name,
+        'name' => $name = $faker->word . ' ' . $faker->word,
         'slug' => str_slug($name),
+    ];
+});
+
+$factory->define(App\Models\Product::class, function (Faker $faker) {
+    return [
+        'name' => $name = $faker->word . ' ' . $faker->word,
+        'slug' => str_slug($name),
+        'price' => $faker->numberBetween(100, 6000),
+        'description' => $faker->paragraph
     ];
 });

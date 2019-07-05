@@ -29,8 +29,18 @@ export default {
   */
 	modules: [
 		// Doc:https://github.com/nuxt-community/modules/tree/master/packages/bulma
-		'@nuxtjs/bulma'
+		'@nuxtjs/bulma',
+		'@nuxtjs/axios'
 	],
+
+	/** 
+	 * axios
+	*/
+
+	axios: {
+		baseURL: 'http://127.0.0.1:8000/api'
+	},
+
 	/*
   ** Build configuration
   */
