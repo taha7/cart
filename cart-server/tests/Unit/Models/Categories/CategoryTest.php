@@ -7,6 +7,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Collection;
+use App\Models\Product;
 
 class CategoryTest extends TestCase
 {
@@ -40,5 +41,18 @@ class CategoryTest extends TestCase
 
         $this->assertEquals(Category::ordered()->first()->slug, $anotherCategory->slug);
         $this->assertEquals(Category::ordered()->get()[1]->slug, $category->slug);
+    }
+
+    /** @test */
+    public function it_has_many_to_many_relationship_with_products()
+    {
+        $category = factory(Category::class)->create();
+
+        $category->products()->save(
+            factory(Product::class)->create()
+        );
+
+        $this->assertInstanceOf(Product::class, $category->products()->first());
+        $this->assertInstanceOf(Collection::class, $category->products);
     }
 }
