@@ -1,11 +1,12 @@
 <template>
-  <p>Hello2</p>
+   <div class="section">
+      <div class="container is-fluid">
+         <p>Home</p>
+      </div>
+   </div>
 </template>
 
 <script>
-
-export default {
-  
-}
+export default {};
 </script>
 

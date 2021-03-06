@@ -18,7 +18,9 @@ class ProductResource extends ProductIndexResource
             array_merge(
                 parent::toArray($request),
                 [
-                    'variations' => []
+                    'variations' => ProductVariationResource::collection(
+                        $this->variations->groupBy('type.name')
+                    )
                 ]
             );
     }

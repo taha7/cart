@@ -19,9 +19,12 @@ class Scoper
    {
       foreach ($scopes as $key => $scope) {
 
-         if ($scope instanceof Scope) {
+         if (in_array($key, $this->request->keys())) {
 
-            $scope->apply($builder, $this->request->get($key));
+            if ($scope instanceof Scope) {
+
+               $scope->apply($builder, $this->request->get($key));
+            }
          }
       }
 

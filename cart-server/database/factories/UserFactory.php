@@ -1,6 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
+use App\Models\ProductVariationType;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,5 +36,27 @@ $factory->define(App\Models\Product::class, function (Faker $faker) {
         'slug' => str_slug($name),
         'price' => $faker->numberBetween(100, 6000),
         'description' => $faker->paragraph
+    ];
+});
+
+$factory->define(App\Models\ProductVariation::class, function (Faker $faker) {
+    return [
+        // 'product_id' => function () {
+        //     return factory('App\Models\Product')->create()->id;
+        // },
+        'name' => $faker->word,
+        // 'product_variation_type_id' =>  factory(ProductVariationType::class)->create()->id
+    ];
+});
+
+$factory->define(App\Models\ProductVariationType::class, function (Faker $faker) {
+    return [
+        'name' => $faker->word
+    ];
+});
+
+$factory->define(App\Models\Stock::class, function (Faker $faker) {
+    return [
+        'quantity' => 1
     ];
 });
