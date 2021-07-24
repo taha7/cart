@@ -1,11 +1,9 @@
 <?php
 
-namespace Tests\Unit\Products;
+namespace Tests\Unit\Models\Products;
 
 use App\Cart\Money;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Models\ProductVariation;
 use App\Models\ProductVariationType;
 use App\Models\Product;

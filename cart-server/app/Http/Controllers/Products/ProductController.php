@@ -22,12 +22,13 @@ class ProductController extends Controller
     public function index()
     {
         return ProductIndexResource::collection(
-            Product::withScopes($this->scopes())->paginate(10)
+            Product::with(['variations.stock'])->withScopes($this->scopes())->paginate(10)
         );
     }
 
     public function show(Product $product)
     {
+        $product->load(['variations.stock', 'variations.type', 'variations.product']);
         return new ProductResource(
             $product
         );

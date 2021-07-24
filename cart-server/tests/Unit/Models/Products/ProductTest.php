@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Products;
+namespace Tests\Unit\Models\Products;
 
 use App\Cart\Money;
 use Tests\TestCase;
@@ -9,6 +9,7 @@ use App\Models\Category;
 use Illuminate\Database\Eloquent\Collection;
 use App\Models\ProductVariation;
 use App\Models\ProductVariationType;
+use App\Models\Stock;
 
 class ProductTest extends TestCase
 {
@@ -63,5 +64,50 @@ class ProductTest extends TestCase
         $product = factory(Product::class)->create(['price' => 1000]);
 
         $this->assertEquals('£10.00', $product->formatted_price);
+    }
+
+    /** @test */
+    public function it_can_check_if_its_in_stock()
+    {
+        $product = factory(Product::class)->create();
+
+        $variation = factory(ProductVariation::class)->create([
+            'product_id' => $product->id,
+            'product_variation_type_id' => factory(ProductVariationType::class)->create()->id
+        ]);
+
+        factory(Stock::class)->create([
+            'product_variation_id' => $variation->id
+        ]);
+
+        $this->assertTrue($product->inStock());
+    }
+
+    /** @test */
+    public function it_can_get_the_stock_count()
+    {
+        $product = factory(Product::class)->create();
+
+        $variation = factory(ProductVariation::class)->create([
+            'product_id' => $product->id,
+            'product_variation_type_id' => factory(ProductVariationType::class)->create()->id
+        ]);
+
+        $variation2 = factory(ProductVariation::class)->create([
+            'product_id' => $product->id,
+            'product_variation_type_id' => factory(ProductVariationType::class)->create()->id
+        ]);
+
+        factory(Stock::class)->create([
+            'quantity' => 10,
+            'product_variation_id' => $variation->id
+        ]);
+
+        factory(Stock::class)->create([
+            'quantity' => 10,
+            'product_variation_id' => $variation2->id
+        ]);
+
+        $this->assertEquals($product->stockCount(), 20);
     }
 }

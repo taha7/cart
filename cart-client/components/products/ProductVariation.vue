@@ -12,12 +12,15 @@
             :key="variation.id"
             :value="variation.id"
             :selected="value === variation.id"
+            :disabled="!variation.in_stock"
           >
             {{ variation.name }}
 
             <template v-if="variation.price_varies">
               ({{ variation.price }})
             </template>
+
+            <template v-if="!variation.in_stock"> (out of stock) </template>
           </option>
         </select>
       </div>
@@ -29,19 +32,19 @@
 export default {
   props: ["type", "variations", "value"],
   methods: {
-    changed($event, type) {
+    changed(event, type) {
       this.$emit("input", this.findVariationById(event.target.value));
     },
 
     findVariationById(id) {
-      const variation = this.variations.find(v => v.id == id);
+      const variation = this.variations.find((v) => v.id == id);
 
       if (typeof variation === "undefined") {
         return null;
       }
 
       return variation;
-    }
+    },
   },
   computed: {
     selectedVariationId() {
@@ -49,8 +52,8 @@ export default {
         return "";
       }
       return this.value.id;
-    }
-  }
+    },
+  },
 };
 </script>
 

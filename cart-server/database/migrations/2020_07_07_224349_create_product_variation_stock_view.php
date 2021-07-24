@@ -14,7 +14,7 @@ class CreateProductVariationStockView extends Migration
     public function up()
     {
         DB::statement('
-            CREATE VIEW product_variation_stock_view AS
+            CREATE OR REPLACE VIEW product_variation_stock_view AS
             SELECT product_variations.product_id as product_id,
             product_variations.id as product_variation_id,
             COALESCE(COALESCE(stocks.quantity, 0) - COALESCE(product_variation_orders.quantity, 0), 0) as quantity,

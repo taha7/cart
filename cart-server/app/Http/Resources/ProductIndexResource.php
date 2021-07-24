@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Product;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ProductIndexResource extends JsonResource
@@ -19,7 +20,20 @@ class ProductIndexResource extends JsonResource
             'name' => $this->name,
             'slug' => $this->slug,
             'price' => $this->formatted_price,
-            'description' => $this->description
+            'description' => $this->description,
+            'stock_count' => $this->stockCount(),
+            'in_stock' => $this->inStock()
         ];
+    }
+
+    /**
+     * Determine if the given attribute exists.
+     *
+     * @param  mixed  $offset
+     * @return bool
+     */
+    public function offsetExists($offset)
+    {
+        return property_exists($this->resource, $offset);
     }
 }

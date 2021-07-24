@@ -33,13 +33,17 @@
                 v-model="form.variation"
               />
 
-              {{ form }}
-
               <div class="field has-addons" v-if="form.variation">
                 <div class="control">
                   <div class="select is-fullwidth">
-                    <select>
-                      <option value="">1</option>
+                    <select v-model="form.quantity">
+                      <option
+                        :value="x"
+                        v-for="x in parseInt(form.variation.stock_count)"
+                        :key="x"
+                      >
+                        {{ x }}
+                      </option>
                       <!-- <option
                         :value="x"
                         v-for="x in parseInt(form.variation.stock_count)"
@@ -66,6 +70,9 @@
 <script>
 import ProductVariation from "@/components/products/ProductVariation";
 export default {
+  components: { ProductVariation },
+
+
   data() {
     return {
       product: null,
@@ -76,7 +83,13 @@ export default {
     };
   },
 
-  components: { ProductVariation },
+
+  watch: {
+    'form.variation' () {
+      this.form.quantity = 1
+    }
+  },
+
 
   async asyncData({ params, app }) {
     let response = await app.$axios.$get(`products/${params.slug}`);
