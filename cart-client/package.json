@@ -14,7 +14,7 @@
     "@nuxtjs/auth": "^4.9.1",
     "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/bulma": "^1.2.1",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "nuxt": "^2.15.7",
     "sass-loader": "^7.1.0"
   },
