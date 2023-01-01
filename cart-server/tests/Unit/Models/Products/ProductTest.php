@@ -58,6 +58,7 @@ class ProductTest extends TestCase
         $this->assertInstanceOf(Money::class, $product->price);
     }
 
+    // @TODO: Do you really need to create or just make
     /** @test */
     public function it_returns_a_formatted_price()
     {

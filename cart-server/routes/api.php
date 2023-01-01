@@ -11,3 +11,5 @@ Route::group(['prefix' => 'auth'], function () {
 });
 
 Route::post('cart', 'Cart\CartController@store');
+Route::patch('cart/{productVariation}', 'Cart\CartController@update');
+Route::delete('cart/{productVariation}', 'Cart\CartController@destroy');

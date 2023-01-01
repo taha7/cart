@@ -12,7 +12,7 @@ class CreateProductVariationStockView extends Migration
      * @return void
      */
     public function up()
-    {
+    {    
         DB::statement('
             CREATE OR REPLACE VIEW product_variation_stock_view AS
             SELECT product_variations.product_id as product_id,

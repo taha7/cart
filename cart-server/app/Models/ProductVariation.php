@@ -50,6 +50,8 @@ class ProductVariation extends Model
         return $this->hasMany(Stock::class);
     }
 
+    // @FIXME: it could be belogsTo relation
+    // and the whole approach could be changed to event listener
     public function stock()
     {
         return $this->belongsToMany(
