@@ -12,13 +12,6 @@ use App\Scoping\Scopes\CategoryScope;
 class ProductController extends Controller
 {
 
-    public function scopes()
-    {
-        return [
-            'category' => new CategoryScope(),
-        ];
-    }
-
     public function index()
     {
         return ProductIndexResource::collection(
@@ -32,5 +25,12 @@ class ProductController extends Controller
         return new ProductResource(
             $product
         );
+    }
+
+    private function scopes()
+    {
+        return [
+            'category' => new CategoryScope(),
+        ];
     }
 }

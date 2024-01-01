@@ -1,6 +1,11 @@
 <?php
 
-Route::resource('categories', 'Categories\CategoryController');
+
+// Route::get('/ping', function () {
+//     return response()->json(['message' => 'pong']);
+// });
+
+Route::get('categories', 'Categories\CategoryController@index');
 Route::resource('products', 'Products\ProductController');
 
 
